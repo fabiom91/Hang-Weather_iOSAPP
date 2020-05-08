@@ -1,0 +1,32 @@
+PODS:
+  - Alamofire (5.1.0)
+  - AnimatedGradientView (2.1.0)
+  - CSV.swift (2.4.3)
+  - ProgressHUD (2.70)
+  - SwiftyJSON (5.0.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - AnimatedGradientView
+  - CSV.swift (~> 2.4.3)
+  - ProgressHUD
+  - SwiftyJSON
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - AnimatedGradientView
+    - CSV.swift
+    - ProgressHUD
+    - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Alamofire: 9d5c5f602928e512395b30950c5984eca840093c
+  AnimatedGradientView: 12f1cff220a83a1783eca3386d6dbded737d6aeb
+  CSV.swift: d38741b349c067b4a6db42237cb0e2974d21ccac
+  ProgressHUD: e603e8b8622c47d8818b9fb38b3cfe9d3e7ca421
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
+
+PODFILE CHECKSUM: 006ffaeea0e37a9072d837db9601351babc96296
+
+COCOAPODS: 1.9.1

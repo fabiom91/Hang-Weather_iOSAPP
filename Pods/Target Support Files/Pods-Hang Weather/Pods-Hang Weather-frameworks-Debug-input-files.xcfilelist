@@ -1,0 +1,6 @@
+${PODS_ROOT}/Target Support Files/Pods-Hang Weather/Pods-Hang Weather-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/AnimatedGradientView/AnimatedGradientView.framework
+${BUILT_PRODUCTS_DIR}/CSV.swift/CSV.framework
+${BUILT_PRODUCTS_DIR}/ProgressHUD/ProgressHUD.framework
+${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework
