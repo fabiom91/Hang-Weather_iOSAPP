@@ -46,30 +46,37 @@ class Page_ViewController: UIPageViewController, UIPageViewControllerDelegate, U
         let loc = locations[locations.count - 1]
         if loc.horizontalAccuracy > 0 {
             locationManager.stopUpdatingLocation()
-            let latitude = String(loc.coordinate.latitude)
-            let longitude = String(loc.coordinate.longitude)
-            
-            CLGeocoder().reverseGeocodeLocation(loc, completionHandler: {(placemarks, error) -> Void in
-                guard error == nil else {
-                    weatherStruct.city = "Unavailable"
-                    return
-                }
-                guard placemarks!.count > 0 else {
-                    weatherStruct.city = "Unavailable"
-                    return
-                }
-                let pm = placemarks![0]
-                weatherStruct.city = String(pm.locality!)
-            })
-            
-            
-            let params : [String:String] = ["lat":latitude,"lon":longitude,"appid":OWM_API_KEY]
-            
-            getWeatherData(url: OWM_URL, parameters: params)
+            process_location_info(loc: loc)
         }
     }
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        locationManager.stopUpdatingLocation()
         locationUnavailableAlert()
+        let loc = CLLocation.init(coordinate: CLLocationCoordinate2D(latitude: 37.33182, longitude:  -122.03118), altitude: 0.0, horizontalAccuracy: CLLocationAccuracy(), verticalAccuracy: CLLocationAccuracy(), course: CLLocationDirection(), speed: CLLocationSpeed(), timestamp: Date())
+        process_location_info(loc: loc)
+    }
+    
+    func process_location_info(loc: CLLocation) {
+        let latitude = String(loc.coordinate.latitude)
+        let longitude = String(loc.coordinate.longitude)
+        
+        CLGeocoder().reverseGeocodeLocation(loc, completionHandler: {(placemarks, error) -> Void in
+            guard error == nil else {
+                weatherStruct.city = "Unavailable"
+                return
+            }
+            guard placemarks!.count > 0 else {
+                weatherStruct.city = "Unavailable"
+                return
+            }
+            let pm = placemarks![0]
+            weatherStruct.city = String(pm.locality!)
+        })
+        
+        
+        let params : [String:String] = ["lat":latitude,"lon":longitude,"appid":OWM_API_KEY]
+        
+        getWeatherData(url: OWM_URL, parameters: params)
     }
     
     func getWeatherData(url: String, parameters: [String:String]) {
@@ -99,6 +106,9 @@ class Page_ViewController: UIPageViewController, UIPageViewControllerDelegate, U
         weatherStruct.pressure = json["main"]["pressure"].int!
         weatherStruct.sunrise = sunrise_sec
         weatherStruct.sunset = sunset_sec
+        if weatherStruct.city == "" {
+            weatherStruct.city = json["name"].string!
+        }
         ProgressHUD.dismiss()
         
         self.dataSource = self
@@ -116,6 +126,11 @@ class Page_ViewController: UIPageViewController, UIPageViewControllerDelegate, U
     func locationUnavailableAlert () {
         ProgressHUD.dismiss()
         let alert = UIAlertController(title: "Location Unavailable", message: "There was an error with your GPS Location, please make sure you allowed GPS location and try again.", preferredStyle: .alert)
+        let dismissAction = UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.cancel) {
+            UIAlertAction in
+            NSLog("Cancel Pressed")
+        }
+        alert.addAction(dismissAction)
         self.present(alert, animated: true)
     }
     

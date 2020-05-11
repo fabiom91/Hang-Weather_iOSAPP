@@ -44,13 +44,17 @@ class Today_ViewController: UIViewController {
         displayPrecipitations(dayTime: dayTime)
         var sun = 0
         var rain = 0
-        var outdoorScore : Int?
+        var outdoorScore : Float?
         if cloudWeather.contains(weatherStruct.desc) || dayTime == "night" {
             sun = 0
             if cloudWeather.contains(weatherStruct.desc) && weatherStruct.desc != "Clouds" {
                 rain = 1
             }
-            outdoorScore = calculateOutdoorScore(pressure: Float(weatherStruct.pressure), humidity: Float(weatherStruct.hum), temperature: weatherStruct.temp, weather: weatherStruct.desc, wind_speed: weatherStruct.windSpeed, sun: sun, rain: rain)
+            if dayTime != "night" {
+                outdoorScore = calculateOutdoorScore(pressure: Float(weatherStruct.pressure), humidity: Float(weatherStruct.hum), temperature: weatherStruct.temp, weather: weatherStruct.desc, wind_speed: weatherStruct.windSpeed, sun: sun, rain: rain)
+            } else {
+                outdoorScore = 0
+            }
         } else {
             sun = 1
             rain = 0
@@ -60,28 +64,51 @@ class Today_ViewController: UIViewController {
             if outdoorScore! > 4 {
                 outdoorScore! = 4
             }
-            if outdoorScore! == 4 {
+            let out = Int(round(outdoorScore! * 10))
+            if out > 35 {
                 etaLaundry_label.text = "1 Hour"
-            } else if outdoorScore! == 3 {
+            } else if out <= 35 && out > 30 {
                 etaLaundry_label.text = "2 Hours"
-            } else if outdoorScore! == 2 {
+            } else if out <= 30 && out > 25 {
+                etaLaundry_label.text = "3 Hours"
+            } else if out <= 25 && out > 20 {
                 etaLaundry_label.text = "4 Hours"
-            } else if outdoorScore! == 1 {
-                etaLaundry_label.text = "> 4 Hours"
-            } else if outdoorScore! == 0 {
+            } else if out <= 20 && out > 15 {
+                etaLaundry_label.text = "5 Hours"
+            } else if out <= 15 && out > 10 {
+                etaLaundry_label.text = "6 Hours"
+            } else if out <= 10 && out > 5 {
+                etaLaundry_label.text = "> 6 Hours"
+            } else if out <= 5 {
                 etaLaundry_label.text = "\u{221E}"
             }
         } else {
             etaLaundry_label.text = "Unavailable \u{2639}"
         }
+        
+        if ["iPhone SE","iPhone 5s","iPhone 5c","iPhone 5"].contains(UIDevice.modelName) {
+            resize_labels_iphoneSE()
+        }
+    }
+    
+    func resize_labels_iphoneSE(){
+        let labels : [UILabel] = [date_label,time_label,temp_label,desc_label,hum_label,windSpeed_label,city_label,etaLaundry_label,eta1_label,eta2_label]
+        for lab in labels {
+            lab.font = lab.font.withSize(lab.font.pointSize * 0.6)
+        }
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        let dayTime : String = updateDayNightCycle()
         let customTempWSPD = formatTempWSPD()
         let temperature = customTempWSPD[0]
         let windspeed = customTempWSPD[1]
 
         displayCurrentWeather(description: weatherStruct.desc, temperature: temperature, humidity: weatherStruct.hum, windspeed: windspeed)
+        displayCurrentDateTime()
+        displayPrecipitations(dayTime: dayTime)
+        setPageControlHidden(hidden: false)
     }
     
     func formatTempWSPD() -> [String] {
@@ -113,7 +140,10 @@ class Today_ViewController: UIViewController {
     }
     
     
-    func calculateOutdoorScore(pressure:Float,humidity:Float,temperature:Float,weather:String,wind_speed:Float,sun:Int,rain:Int) -> Int? {
+    func calculateOutdoorScore(pressure:Float,humidity:Float,temperature:Float,weather:String,wind_speed:Float,sun:Int,rain:Int) -> Float? {
+        if rain == 1 {
+            return 0.0
+        }
         if let filePath = Bundle.main.url(forResource: "df_corr", withExtension: "csv") {
             let stream = InputStream(url: filePath)!
             let csv = try! CSVReader(stream: stream)
@@ -130,7 +160,7 @@ class Today_ViewController: UIViewController {
             if outdoorScore > 0 {
                 outdoorScore = log10(outdoorScore)
             }
-            return Int(round(outdoorScore))
+            return outdoorScore
         } else {
             return nil
         }
@@ -162,7 +192,7 @@ class Today_ViewController: UIViewController {
         let minutes = calendar.component(.minute, from: date)
         
         date_label.text = String(day) + " " + String(month!) + " " + String(year)
-        time_label.text = String(hour) + ":" + String(minutes)
+        time_label.text = String(format:"%02d:%02d", hour, minutes)
     }
     
     func displayCurrentWeather(description:String,temperature:String,humidity:Int,windspeed:String){
@@ -220,6 +250,9 @@ class Today_ViewController: UIViewController {
                 desc_label.text?.append(" " + emojiWeather.emojiDict["Thunderstorm"]!)
                 generatePrecipitation(image: UIImage(named: "raindrop")!, type: particleSettings.heavyRain)
                 generateThunders()
+            } else if weatherStruct.desc == "Snow" {
+                desc_label.text?.append(" " + emojiWeather.emojiDict["Snow"]!)
+                generatePrecipitation(image: UIImage(named: "snowball")!, type: particleSettings.snow)
             } else {
                 desc_label.text?.append(" " + emojiWeather.emojiDict["Clouds"]!)
             }
@@ -301,6 +334,21 @@ class Today_ViewController: UIViewController {
         emitter.emitterSize = CGSize(width: UIScreen.main.bounds.maxX, height: 2)
         view.layer.addSublayer(emitter)
         
+    }
+    
+    func setPageControlHidden (hidden: Bool)
+    {
+        for subView in parent!.view.subviews
+        {
+            if subView is UIScrollView
+            {
+                subView.frame = parent!.view.bounds
+            }
+            else if subView is UIPageControl
+            {
+                subView.isHidden = hidden
+            }
+        }
     }
     
     

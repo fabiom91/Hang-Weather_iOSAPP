@@ -20,6 +20,33 @@ class Settings_ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        let defaults = UserDefaults.standard
+        
+        if let temp_unit = defaults.object(forKey: "Temp_unit") as? String {
+            print(temp_unit)
+            switch temp_unit {
+            case "°C":
+                tempUnit_control.selectedSegmentIndex = 0
+            case "°F":
+                tempUnit_control.selectedSegmentIndex = 1
+            case "K":
+                tempUnit_control.selectedSegmentIndex = 2
+            default:
+                break
+            }
+        }
+        if let wspd_unit = defaults.object(forKey: "Wspd_unit") as? String {
+            switch wspd_unit {
+            case "mph":
+                wspd_control.selectedSegmentIndex = 1
+            default:
+                wspd_control.selectedSegmentIndex = 0
+            }
+        }
+        
+    }
+    
     @IBAction func tempUnit_toggle(_ sender: UISegmentedControl) {
         let defaults = UserDefaults.standard
         switch tempUnit_control.selectedSegmentIndex

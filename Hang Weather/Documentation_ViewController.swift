@@ -14,6 +14,25 @@ class Documentation_ViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        setPageControlHidden(hidden: true)
+    }
+    
+    func setPageControlHidden (hidden: Bool)
+    {
+        for subView in parent!.view.subviews
+        {
+            if subView is UIScrollView
+            {
+                subView.frame = parent!.view.bounds
+            }
+            else if subView is UIPageControl
+            {
+                subView.isHidden = hidden
+            }
+        }
     }
     
     @IBAction func click_button(_ sender: UIButton) {

@@ -13,6 +13,7 @@
 		DA61F24B2465716F00E5F189 /* Documentation_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61F24A2465716F00E5F189 /* Documentation_ViewController.swift */; };
 		DA61F24D2465766600E5F189 /* Settings_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61F24C2465766600E5F189 /* Settings_ViewController.swift */; };
 		DA61F24F246594EB00E5F189 /* API_Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61F24E246594EB00E5F189 /* API_Keys.swift */; };
+		DAC844312466EAB200A441E9 /* Check_device.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC844302466EAB200A441E9 /* Check_device.swift */; };
 		DAD93FCE24600B34001E09AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD93FCD24600B34001E09AA /* AppDelegate.swift */; };
 		DAD93FD024600B34001E09AA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD93FCF24600B34001E09AA /* SceneDelegate.swift */; };
 		DAD93FD524600B34001E09AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAD93FD324600B34001E09AA /* Main.storyboard */; };
@@ -30,6 +31,7 @@
 		DA61F24A2465716F00E5F189 /* Documentation_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Documentation_ViewController.swift; sourceTree = "<group>"; };
 		DA61F24C2465766600E5F189 /* Settings_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings_ViewController.swift; sourceTree = "<group>"; };
 		DA61F24E246594EB00E5F189 /* API_Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API_Keys.swift; sourceTree = "<group>"; };
+		DAC844302466EAB200A441E9 /* Check_device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Check_device.swift; sourceTree = "<group>"; };
 		DAD93FCA24600B34001E09AA /* Hang Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hang Weather.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAD93FCD24600B34001E09AA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DAD93FCF24600B34001E09AA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 				DA42B2D124648BE80021B060 /* df_corr.csv */,
 				DA22C7692460662200A66CA3 /* Emitter.swift */,
 				DA61F24E246594EB00E5F189 /* API_Keys.swift */,
+				DAC844302466EAB200A441E9 /* Check_device.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 				DAD93FE624601A85001E09AA /* Today_ViewController.swift in Sources */,
 				DA61F24B2465716F00E5F189 /* Documentation_ViewController.swift in Sources */,
 				DAD93FCE24600B34001E09AA /* AppDelegate.swift in Sources */,
+				DAC844312466EAB200A441E9 /* Check_device.swift in Sources */,
 				DAD93FD024600B34001E09AA /* SceneDelegate.swift in Sources */,
 				DA22C76A2460662200A66CA3 /* Emitter.swift in Sources */,
 				DA61F24D2465766600E5F189 /* Settings_ViewController.swift in Sources */,
@@ -386,6 +390,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = XX3HL6ABNW;
 				INFOPLIST_FILE = "Hang Weather/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -405,6 +410,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = XX3HL6ABNW;
 				INFOPLIST_FILE = "Hang Weather/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
