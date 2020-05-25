@@ -11,9 +11,7 @@ import AnimatedGradientView
 import CSV
 
 class Today_ViewController: UIViewController {
-    
-    let cloudWeather = ["Clouds","Drizzle","Rain","Thunderstorm","Snow"]
-    
+        
   
     @IBOutlet weak var clouds_view: AnimatedGradientView!
     @IBOutlet weak var thunders: UIView!
@@ -30,61 +28,20 @@ class Today_ViewController: UIViewController {
     @IBOutlet weak var eta2_label: UILabel!
     
     @IBOutlet weak var etaLaundry_label: UILabel!
-        
+    
+    let cloudWeather = ["Clouds","Drizzle","Rain","Thunderstorm","Snow"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //TODO display weather info
-        
+        city_label.adjustsFontSizeToFitWidth = true
         city_label.text = weatherStruct.city
+        
         
         let dayTime : String = updateDayNightCycle()
         displayCurrentDateTime()
         displayPrecipitations(dayTime: dayTime)
-        var sun = 0
-        var rain = 0
-        var outdoorScore : Float?
-        if cloudWeather.contains(weatherStruct.desc) || dayTime == "night" {
-            sun = 0
-            if cloudWeather.contains(weatherStruct.desc) && weatherStruct.desc != "Clouds" {
-                rain = 1
-            }
-            if dayTime != "night" {
-                outdoorScore = calculateOutdoorScore(pressure: Float(weatherStruct.pressure), humidity: Float(weatherStruct.hum), temperature: weatherStruct.temp, weather: weatherStruct.desc, wind_speed: weatherStruct.windSpeed, sun: sun, rain: rain)
-            } else {
-                outdoorScore = 0
-            }
-        } else {
-            sun = 1
-            rain = 0
-            outdoorScore = calculateOutdoorScore(pressure: Float(weatherStruct.pressure), humidity: Float(weatherStruct.hum), temperature: weatherStruct.temp, weather: weatherStruct.desc, wind_speed: weatherStruct.windSpeed, sun: sun, rain: rain)
-        }
-        if (outdoorScore != nil) {
-            if outdoorScore! > 4 {
-                outdoorScore! = 4
-            }
-            let out = Int(round(outdoorScore! * 10))
-            if out > 35 {
-                etaLaundry_label.text = "1 Hour"
-            } else if out <= 35 && out > 30 {
-                etaLaundry_label.text = "2 Hours"
-            } else if out <= 30 && out > 25 {
-                etaLaundry_label.text = "3 Hours"
-            } else if out <= 25 && out > 20 {
-                etaLaundry_label.text = "4 Hours"
-            } else if out <= 20 && out > 15 {
-                etaLaundry_label.text = "5 Hours"
-            } else if out <= 15 && out > 10 {
-                etaLaundry_label.text = "6 Hours"
-            } else if out <= 10 && out > 5 {
-                etaLaundry_label.text = "> 6 Hours"
-            } else if out <= 5 {
-                etaLaundry_label.text = "\u{221E}"
-            }
-        } else {
-            etaLaundry_label.text = "Unavailable \u{2639}"
-        }
         
         if ["iPhone SE","iPhone 5s","iPhone 5c","iPhone 5"].contains(UIDevice.modelName) {
             resize_labels_iphoneSE()
@@ -109,6 +66,10 @@ class Today_ViewController: UIViewController {
         displayCurrentDateTime()
         displayPrecipitations(dayTime: dayTime)
         setPageControlHidden(hidden: false)
+        
+        let currentScores = Scores(dayTime: dayTime)
+        etaLaundry_label.text = currentScores.outdoorETA
+        
     }
     
     func formatTempWSPD() -> [String] {

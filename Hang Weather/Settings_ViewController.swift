@@ -24,7 +24,6 @@ class Settings_ViewController: UIViewController {
         let defaults = UserDefaults.standard
         
         if let temp_unit = defaults.object(forKey: "Temp_unit") as? String {
-            print(temp_unit)
             switch temp_unit {
             case "°C":
                 tempUnit_control.selectedSegmentIndex = 0

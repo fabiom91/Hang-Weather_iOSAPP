@@ -34,7 +34,7 @@ class Page_ViewController: UIPageViewController, UIPageViewControllerDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         ProgressHUD.show()
-        
+                
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
         locationManager.requestWhenInUseAuthorization()

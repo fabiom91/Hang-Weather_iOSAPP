@@ -14,6 +14,10 @@
 		DA61F24D2465766600E5F189 /* Settings_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61F24C2465766600E5F189 /* Settings_ViewController.swift */; };
 		DA61F24F246594EB00E5F189 /* API_Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61F24E246594EB00E5F189 /* API_Keys.swift */; };
 		DAC844312466EAB200A441E9 /* Check_device.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC844302466EAB200A441E9 /* Check_device.swift */; };
+		DACFB8DE247BB27C00A1C170 /* score_system.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACFB8DD247BB27C00A1C170 /* score_system.swift */; };
+		DACFB8E2247BB44800A1C170 /* hist_weather.csv in Resources */ = {isa = PBXBuildFile; fileRef = DACFB8DF247BB44700A1C170 /* hist_weather.csv */; };
+		DACFB8E3247BB44800A1C170 /* pws.csv in Resources */ = {isa = PBXBuildFile; fileRef = DACFB8E0247BB44800A1C170 /* pws.csv */; };
+		DACFB8E4247BB44800A1C170 /* viscosityH2O.csv in Resources */ = {isa = PBXBuildFile; fileRef = DACFB8E1247BB44800A1C170 /* viscosityH2O.csv */; };
 		DAD93FCE24600B34001E09AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD93FCD24600B34001E09AA /* AppDelegate.swift */; };
 		DAD93FD024600B34001E09AA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD93FCF24600B34001E09AA /* SceneDelegate.swift */; };
 		DAD93FD524600B34001E09AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAD93FD324600B34001E09AA /* Main.storyboard */; };
@@ -32,6 +36,10 @@
 		DA61F24C2465766600E5F189 /* Settings_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings_ViewController.swift; sourceTree = "<group>"; };
 		DA61F24E246594EB00E5F189 /* API_Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API_Keys.swift; sourceTree = "<group>"; };
 		DAC844302466EAB200A441E9 /* Check_device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Check_device.swift; sourceTree = "<group>"; };
+		DACFB8DD247BB27C00A1C170 /* score_system.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = score_system.swift; sourceTree = "<group>"; };
+		DACFB8DF247BB44700A1C170 /* hist_weather.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hist_weather.csv; sourceTree = "<group>"; };
+		DACFB8E0247BB44800A1C170 /* pws.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pws.csv; sourceTree = "<group>"; };
+		DACFB8E1247BB44800A1C170 /* viscosityH2O.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = viscosityH2O.csv; sourceTree = "<group>"; };
 		DAD93FCA24600B34001E09AA /* Hang Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hang Weather.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAD93FCD24600B34001E09AA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DAD93FCF24600B34001E09AA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,12 +75,23 @@
 		DA22C7682460660E00A66CA3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DACFB8DF247BB44700A1C170 /* hist_weather.csv */,
+				DACFB8E0247BB44800A1C170 /* pws.csv */,
+				DACFB8E1247BB44800A1C170 /* viscosityH2O.csv */,
 				DA42B2D124648BE80021B060 /* df_corr.csv */,
 				DA22C7692460662200A66CA3 /* Emitter.swift */,
 				DA61F24E246594EB00E5F189 /* API_Keys.swift */,
 				DAC844302466EAB200A441E9 /* Check_device.swift */,
+				DACFB8DD247BB27C00A1C170 /* score_system.swift */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		DA5298A8246985BC00B80E3E /* Unit_Testing */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Unit_Testing;
 			sourceTree = "<group>";
 		};
 		DAD93FC124600B34001E09AA = {
@@ -96,6 +115,7 @@
 		DAD93FCC24600B34001E09AA /* Hang Weather */ = {
 			isa = PBXGroup;
 			children = (
+				DA5298A8246985BC00B80E3E /* Unit_Testing */,
 				DA22C7682460660E00A66CA3 /* Resources */,
 				DAD93FCD24600B34001E09AA /* AppDelegate.swift */,
 				DAD93FCF24600B34001E09AA /* SceneDelegate.swift */,
@@ -180,8 +200,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DACFB8E2247BB44800A1C170 /* hist_weather.csv in Resources */,
 				DAD93FDA24600B39001E09AA /* LaunchScreen.storyboard in Resources */,
 				DAD93FD724600B39001E09AA /* Assets.xcassets in Resources */,
+				DACFB8E4247BB44800A1C170 /* viscosityH2O.csv in Resources */,
+				DACFB8E3247BB44800A1C170 /* pws.csv in Resources */,
 				DA42B2D224648BE80021B060 /* df_corr.csv in Resources */,
 				DAD93FD524600B34001E09AA /* Main.storyboard in Resources */,
 			);
@@ -243,6 +266,7 @@
 				DAD93FD024600B34001E09AA /* SceneDelegate.swift in Sources */,
 				DA22C76A2460662200A66CA3 /* Emitter.swift in Sources */,
 				DA61F24D2465766600E5F189 /* Settings_ViewController.swift in Sources */,
+				DACFB8DE247BB27C00A1C170 /* score_system.swift in Sources */,
 				DA61F24F246594EB00E5F189 /* API_Keys.swift in Sources */,
 				DAD93FE424600F0E001E09AA /* Page_ViewController.swift in Sources */,
 			);
@@ -390,13 +414,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = XX3HL6ABNW;
 				INFOPLIST_FILE = "Hang Weather/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "fabiomagarelli.Hang-Weather";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -410,13 +435,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = XX3HL6ABNW;
 				INFOPLIST_FILE = "Hang Weather/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "fabiomagarelli.Hang-Weather";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
